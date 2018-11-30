@@ -124,8 +124,8 @@ class company_base():
             result = []
             for check in data:
                 obj = {}
-                obj['id'] = check[0]
-                obj['title'] = check[2]
+                obj['id'] = check[0]                                # id
+                obj['title'] = check[2]                             # 标题
                 obj['product_name'] = check[3]
                 obj['file_no'] = check[4]
                 obj['file_property'] = check[5]
@@ -133,7 +133,7 @@ class company_base():
                 obj['file_content'] = check[7]
                 obj['issuer'] = check[8]
                 obj['pubdate'] = check[9]
-                obj['relate_product'] = check[10]
+                # obj['relate_product'] = check[10]
                 obj['add_date'] = check[11].__str__()
                 result.append(obj)
             return result, len(result)
@@ -260,6 +260,7 @@ class company_base():
                 obj['authority_state'] = patent[8]
                 obj['img_url'] = patent[9]
                 obj['add_date'] = patent[10].__str__()
+                obj['file_info'] = patent[11]
                 result.append(obj)
             return result, len(result)
         except Exception, e:
@@ -356,5 +357,72 @@ class company_base():
         except Exception, e:
             return [], 0
 
+    @staticmethod
+    def get_red_black_list(credit_code):
+        """
+        获得红黑榜
+        :param credit_code:
+        :return:
+        """
+        try:
+            sql = """
+                select t.* from t_pc_red_black_list t
+                left join t_pc_base_info a on t.pc_id = a.id
+                where a.credit_code = "%s" order by t.is_red_black
+            """ % credit_code
+            data = utils.sql_helper(sql)
+            result = []
+            for red_black_list in data:
+                obj = {}
+                obj['id'] = red_black_list[0]
+                obj['is_red_black'] = red_black_list[2]                         # 红榜或者黑榜
+                obj['rank_list'] = red_black_list[3]                            # 上榜主体
+                obj['contant'] = red_black_list[4]                              # 联系人
+                obj['contant_number'] = red_black_list[5]                       # 联系电话
+                obj['year'] = red_black_list[6]                                 # 年度
+                obj['rank_time'] = red_black_list[7]                            # 上榜时间
+                obj['is_repeal'] = red_black_list[8]                            # 是否撤销
+                obj['is_intranet'] = red_black_list[9]                          # 是否内网公示
+                obj['is_outer_net'] = red_black_list[10]                        # 是否外网公示
+                obj['rank_reason'] = red_black_list[11]                         # 上榜理由
+                obj['remark'] = red_black_list[10]                              # 备注
+                obj['add_date'] = red_black_list[11].__str__()                  # 添加时间
+                result.append(obj)
+            return result, len(result)
+        except Exception, e:
+            return [], 0
 
-
+    @staticmethod
+    def get_supervise_examine(credit_code):
+        """
+        获得监督检查
+        :param credit_code:
+        :return:
+        """
+        try:
+            sql = """
+                select t.* from t_pc_supervise_examine t
+                left join t_pc_base_info a on t.pc_id = a.id
+                where a.credit_code = "%s" order by t.is_red_black
+            """ % credit_code
+            data = utils.sql_helper(sql)
+            result = []
+            for red_black_list in data:
+                obj = {}
+                obj['id'] = red_black_list[0]
+                obj['is_red_black'] = red_black_list[2]                         # 红榜或者黑榜
+                obj['rank_list'] = red_black_list[3]                            # 上榜主体
+                obj['contant'] = red_black_list[4]                              # 联系人
+                obj['contant_number'] = red_black_list[5]                       # 联系电话
+                obj['year'] = red_black_list[6]                                 # 年度
+                obj['rank_time'] = red_black_list[7]                            # 上榜时间
+                obj['is_repeal'] = red_black_list[8]                            # 是否撤销
+                obj['is_intranet'] = red_black_list[9]                          # 是否内网公示
+                obj['is_outer_net'] = red_black_list[10]                        # 是否外网公示
+                obj['rank_reason'] = red_black_list[11]                         # 上榜理由
+                obj['remark'] = red_black_list[10]                              # 备注
+                obj['add_date'] = red_black_list[11].__str__()                  # 添加时间
+                result.append(obj)
+            return result, len(result)
+        except Exception, e:
+            return [], 0
