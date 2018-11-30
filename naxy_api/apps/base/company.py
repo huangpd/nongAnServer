@@ -54,7 +54,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_ad_supervision t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s" order by file_property
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
@@ -99,7 +99,9 @@ class company_base():
                 obj['limit_date'] = publicity[6]
                 obj['licence_content'] = publicity[7]
                 obj['license_authority'] = publicity[8]
+                obj['type'] = publicity[9]
                 obj['add_date'] = publicity[10].__str__()
+                obj['legal_person_name'] = publicity[11]
                 result.append(obj)
             return result, len(result)
         except Exception, e:
@@ -108,7 +110,7 @@ class company_base():
     @staticmethod
     def get_quality_check(credit_code):
         """
-        获得双公示
+        获得质量检查
         :param credit_code:
         :return:
         """
@@ -116,7 +118,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_quality_check t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s"
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
@@ -149,7 +151,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_association t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s"
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
@@ -173,7 +175,7 @@ class company_base():
     @staticmethod
     def get_media_evaluation(credit_code):
         """
-        获得双公示
+        获得媒体评价
         :param credit_code:
         :return:
         """
@@ -181,7 +183,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_media_evaluation t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s"
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
@@ -212,7 +214,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_consumer_evaluation t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s"
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
@@ -297,7 +299,7 @@ class company_base():
     @staticmethod
     def get_registration_right(credit_code):
         """
-        获得双公示
+        获得著作权
         :param credit_code:
         :return:
         """
@@ -327,7 +329,7 @@ class company_base():
     @staticmethod
     def get_employee_evaluation(credit_code):
         """
-        获得双公示
+        获得员工评价
         :param credit_code:
         :return:
         """
@@ -335,7 +337,7 @@ class company_base():
             sql = """
                 select t.* from t_pc_employee_evaluation t
                 left join t_pc_base_info a on t.pc_id = a.id
-                where a.credit_code = "%s"
+                where a.credit_code = "%s" order by t.file_property
             """ % credit_code
             data = utils.sql_helper(sql)
             result = []
