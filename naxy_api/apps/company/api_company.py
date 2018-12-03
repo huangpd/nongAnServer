@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from base.company import company_base
 from base.encrypt_utils import encryptUtils
+from base.models import TLvdunCompanyInfo
 from base.system import system_base
 
 
@@ -383,4 +384,247 @@ def get_employee_evaluation(request):
         obj['data'] = []
         obj['count'] = 0
         obj['msg'] = '获得企业员工评价失败'
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_red_black_list(request):
+    """
+    获得红黑榜
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_red_black_list(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get red black list defeated'
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_supervise_examine_log(request):
+    """
+    获得监督检查（执法日志，巡查日志）
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_supervise_examine_log(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get supervise examine log defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_supervise_examine_case_register(request):
+    """
+    获得监督检查（案件登记）
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_supervise_examine_case_register(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get supervise examine case register defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_nuisanceless_product(request):
+    """
+    获取无公害产品
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_nuisanceless_product(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get nuisanceless product defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_green_food(request):
+    """
+    获取绿色食品
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_green_food(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get green food defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_geography_product(request):
+    """
+    获取地理标志产品
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_geography_product(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get geography product defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_organic_products(request):
+    """
+    获取有机产品
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_organic_products(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get organic products defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_traceability_info(request):
+    """
+    获取溯源信息
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_traceability_info(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get traceability info defeated '
+    return HttpResponse(json.dumps(obj))
+
+
+@csrf_exempt
+def get_certificate_qualification(request):
+    """
+    获取开具合格证
+    :param request:
+    :return:
+    """
+    obj = {}
+    try:
+        credit_code = request.POST['credit_code']
+        result, count = company_base.get_certificate_qualification(credit_code)
+        if result:
+            obj['status'] = '1'
+            obj['data'] = result
+            obj['count'] = count
+        else:
+            obj['status'] = '2'
+            obj['data'] = []
+            obj['count'] = 0
+    except Exception, e:
+        obj['status'] = '0'
+        obj['data'] = []
+        obj['count'] = 0
+        obj['msg'] = 'get certificate qualification defeated '
     return HttpResponse(json.dumps(obj))
