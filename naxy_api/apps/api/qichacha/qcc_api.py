@@ -38,7 +38,7 @@ class qcc_api(object):
         except Exception,e:
             return None
 
-    def __call_api(self, reqTid, dicParam, call_api_url, api_name, isRealTime=False):
+    def __call_api(self,reqTid,dicParam,call_api_url,api_name,isRealTime=False):
         """
         调用接口api
         :param reqTid: 查询唯一流水号
@@ -98,7 +98,7 @@ class qcc_api(object):
                 #接口输出内容
         return str(ret_txt)
 
-    def __saveApiLog(self, reqTid, api_name, api_url, nosign_api_url, ret_txt, user_name):
+    def __saveApiLog(self,reqTid,api_name,api_url,nosign_api_url,ret_txt,user_name):
         '''
         保存api调用日志
         :param reqTid: 查询唯一流水号
@@ -123,37 +123,37 @@ class qcc_api(object):
         :param company_name: 公司名称  （这里要全名称匹配）
         :return:
         """
-        isRealTime = True  # 是否实时查询 True每次都调用api查询最新信息，不传默认False
+        isRealTime = True #是否实时查询 True每次都调用api查询最新信息，不传默认False
         #校验必填参数
-        company_name = str(company_name).replace(' ', '')
+        company_name = str(company_name).replace(' ','')
         if company_name == 'None' or company_name == '':
             return '{"resCode": "201","resMsg": "参数：company_name 不能为空"}'
 
-        reqTid = self.__create_ReqTid()  # 创建查询唯一流水号
+        reqTid = self.__create_ReqTid() #创建查询唯一流水号
         #准备api 参数
         dicParam = {
             'cityCode': '',
             'industryCode': '',
-            'isSortAsc': '',
-            'pageIndex': '',
-            'pageSize': '',
-            'province': '',
-            'registCapiBegin': '',
-            'registCapiEnd': '',
-            'searchIndex': '',
-            'searchKey': company_name,
-            'sortField': '',
-            'startDateBegin': '',
-            'subIndustryCode': ''
+            'isSortAsc' : '',
+            'pageIndex' : '',
+            'pageSize' : '',
+            'province' : '',
+            'registCapiBegin' : '',
+            'registCapiEnd' : '',
+            'searchIndex' : '',
+            'searchKey' : company_name,
+            'sortField' : '',
+            'startDateBegin' : '',
+            'subIndustryCode' : ''
         }
         #签名sign参数
         signParm = dicParam
         api_url = 'http://opensdk.qichacha.com/open/v1/base/advancedSearch'
         api_name = '企业信息高级查询'
-        advancedSearch_txt = self.__call_api(reqTid, dicParam, api_url, api_name, True)
+        advancedSearch_txt = self.__call_api(reqTid,dicParam,api_url,api_name,True)
         data = json.loads(advancedSearch_txt)
         if data['status'] == 200:
-            if data['result']['Result'] != None and len(data['result']['Result']) > 0:
+            if data['result']['Result'] != None and len(data['result']['Result'])  >0:
                 if data['result']['Result'][0]['Name'] != company_name:
                     #没有查询到企业
                     return '{"resCode": "202","resMsg": "未查询企业信息"}'
@@ -179,7 +179,7 @@ class qcc_api(object):
         }
         api_url = 'http://opensdk.qichacha.com/open/v1/base/getAnnualReport'
         api_name = '企业年报'
-        report_txt = self.__call_api(reqTid, dicParam, api_url, api_name)
+        report_txt = self.__call_api(reqTid,dicParam,api_url,api_name)
         report_txt = report_txt.encode('utf-8')
         report_jsonData = json.loads(report_txt)
         ret_data['data']['AnnualReports'] = report_jsonData['result']
@@ -253,15 +253,15 @@ http://opensdk.qichacha.com/open/v1/legal/getAnnouncementList?searchKey=%E5%B0%8
         """
         isRealTime = True #是否实时查询 True每次都调用api查询最新信息，不传默认False
         #校验必填参数
-        company_name = str(company_name).replace(' ', '')
+        company_name = str(company_name).replace(' ','')
         if company_name == 'None' or company_name == '':
             return '{"resCode": "201","resMsg": "参数：company_name 不能为空"}'
 
-        reqTid = self.__create_ReqTid()  # 创建查询唯一流水号
+        reqTid = self.__create_ReqTid() #创建查询唯一流水号
         #准备api 参数
         dicParam = {
-            'searchKey': company_name,
-            'pageIndex': str(pageIndex)
+            'searchKey' : company_name,
+            'pageIndex' : str(pageIndex)
         }
         #签名sign参数
         signParm = dicParam

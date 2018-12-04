@@ -98,3 +98,43 @@ class TZcxApiLog(models.Model):
         db_table = 't_zcx_api_log'
 
 
+class TLvdunCompanyInfo(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    company_name = models.CharField(max_length=255, blank=True)
+    company_score = models.TextField(blank=True)
+    company_url = models.CharField(max_length=255, blank=True)
+    company_addr = models.TextField(max_length=1000, blank=True)
+    duty_number = models.TextField(blank=True)
+    open_bank = models.TextField(max_length=100, blank=True)
+    bank_account = models.TextField(blank=True, null=True)
+    main_product = models.TextField(blank=True, null=True)
+    company_summary = models.TextField(blank=True, null=True)
+    company_pic = models.TextField(blank=True, null=True)
+    detail_url = models.TextField(blank=True, null=True)
+    html_text = models.TextField(blank=True, null=True)
+    add_time = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 't_lvdun_company_info'
+
+class TPcBaseInfo(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    pc_name = models.CharField(max_length=100, blank=True)
+    pc_score = models.CharField(max_length=100, blank=True)
+    pc_url = models.CharField(max_length=100, blank=True)
+    pc_address = models.CharField(max_length=100, blank=True)
+    credit_code = models.CharField(max_length=100, blank=True)
+    open_bank = models.CharField(max_length=100, blank=True)
+    bank_account = models.CharField(max_length=100, blank=True, null=True)
+    main_product = models.TextField(blank=True, null=True)
+    introduce = models.TextField(blank=True, null=True)
+    img_url = models.CharField(max_length=1024, blank=True, null=True)
+    detail_url = models.CharField(max_length=100, blank=True, null=True)
+    add_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+
+    class Meta:
+        managed = False
+        db_table = 't_pc_base_info'
+
+

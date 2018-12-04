@@ -108,7 +108,7 @@ class company_base():
     @staticmethod
     def get_quality_check(credit_code):
         """
-        获得双公示
+        获得质量检查
         :param credit_code:
         :return:
         """
@@ -518,7 +518,7 @@ class company_base():
                 obj['agricultural_cooperative'] = geeen_food[10]                # 农业合作社
                 obj['army'] = geeen_food[11]                                    # 军队
                 obj['bibcock_logo'] = geeen_food[12]                            # 龙头企业标识
-                obj['add_date'] = geeen_food[13].__str__()                                # 添加时间
+                obj['add_date'] = geeen_food[13].__str__()                      # 添加时间
                 result.append(obj)
             return result, len(result)
         except Exception, e:

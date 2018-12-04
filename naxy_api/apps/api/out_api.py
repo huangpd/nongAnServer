@@ -39,7 +39,6 @@ def get_company_detail(request):
         return HttpResponse(json.dumps(obj))
 
 
-@csrf_exempt
 def get_announcement_list(request):
     """
     查询法院公告
@@ -59,7 +58,6 @@ def get_announcement_list(request):
         return HttpResponse(json.dumps(obj))
 
 
-@csrf_exempt
 def get_zhixing_list(request):
     try:
         data = ""
@@ -74,7 +72,6 @@ def get_zhixing_list(request):
         return HttpResponse(json.dumps(obj))
 
 
-@csrf_exempt
 def get_shixin_list(request):
     try:
         data = ""
@@ -89,7 +86,6 @@ def get_shixin_list(request):
         return HttpResponse(json.dumps(obj))
 
 
-@csrf_exempt
 def get_judgment_list(request):
     """
     查询法院判决书

@@ -18,7 +18,7 @@ urlpatterns = patterns('api.out_api',
     url(r'^pc/get_jobs$', 'get_jobs'),  # 查询企业招聘信息
     url(r'^pc/get_website_list$', 'get_website_list'),  # 查询企业注册网站
     url(r'^pc/get_company_financings$', 'get_company_financings'),  # 查询企业融资信息
-    url(r'^pc/get_company_products$', 'get_company_products'),  # 查询-企业产品
+    url(r'^pc/get_company_products$', 'get_company_products'),  # 查询企业产品
     url(r'^pc/get_company_Investment$', 'get_company_Investment'),  # 查询企业对外投资
     url(r'^pc/company_advancedsearch$', 'company_advancedSearch'),  # 企业信息高级查询
 
